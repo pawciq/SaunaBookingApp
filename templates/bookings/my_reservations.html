@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Moje Rezerwacje{% endblock %}
+
+{% block content %}
+    <h2>Moje Rezerwacje</h2>
+
+    <h3>Nadchodzące Rezerwacje</h3>
+    {% if upcoming_reservations %}
+        <div class="reservation-list">
+            {% for res in upcoming_reservations %}
+                <div class="reservation-item">
+                    <h4>{{ res.sauna.name }}</h4>
+                    <p>Termin: {{ res.start_time|date:"Y-m-d H:i" }} - {{ res.end_time|date:"H:i" }}</p>
+                    <p>Czas trwania: {{ res.get_duration_in_hours }} godzina(y)</p>
+                    <p>Całkowita cena: {{ res.total_price }} PLN</p>
+                    <p>Status: <span class="status-{{ res.status }}">{{ res.get_status_display }}</span></p>
+                    {# Tutaj w przyszłości można dodać opcję anulowania rezerwacji #}
+                    {# <a href="#" class="button button-danger">Anuluj Rezerwację</a> #}
+                </div>
+                {% if not forloop.last %}<hr>{% endif %} {# Dodaj linię poza ostatnim elementem #}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Brak nadchodzących rezerwacji.</p>
+    {% endif %}
+
+    <h3>Przeszłe Rezerwacje</h3>
+    {% if past_reservations %}
+        <div class="reservation-list">
+            {% for res in past_reservations %}
+                <div class="reservation-item past-reservation">
+                    <h4>{{ res.sauna.name }}</h4>
+                    <p>Termin: {{ res.start_time|date:"Y-m-d H:i" }} - {{ res.end_time|date:"H:i" }}</p>
+                    <p>Czas trwania: {{ res.get_duration_in_hours }} godzina(y)</p>
+                    <p>Całkowita cena: {{ res.total_price }} PLN</p>
+                    <p>Status: <span class="status-{{ res.status }}">{{ res.get_status_display }}</span></p>
+                </div>
+                {% if not forloop.last %}<hr>{% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Brak przeszłych rezerwacji.</p>
+    {% endif %}
+
+    <style>
+        /* Proste style dla listy rezerwacji - zostaną przeniesione do style.css w kolejnym kroku */
+        .reservation-item {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background-color: #fcfcfc;
+        }
+        .reservation-item h4 {
+            color: #34495e;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .reservation-item p {
+            margin: 5px 0;
+        }
+        .status-pending { color: orange; font-weight: bold; }
+        .status-paid { color: green; font-weight: bold; }
+        .status-cancelled { color: red; font-weight: bold; }
+        .status-completed { color: blue; font-weight: bold; }
+        .past-reservation {
+            opacity: 0.7; /* Lekkie przyciemnienie przeszłych rezerwacji */
+        }
+        .button-danger {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+{% endblock %}

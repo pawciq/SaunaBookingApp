@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+env/
+venv/
+bin/
+include/
+lib/
+lib64/
+pyvenv.cfg
+# virtualenv
+.venv/
+
+# Django
+*.log
+*.pot
+*.mo
+*.sqlite3 # Bardzo ważne! Nie wysyłaj pliku bazy danych SQLite
+media/ # Na razie możesz ignorować, jeśli nie używasz Media
+static/ # Jeśli collectstatic tworzy tu pliki, a chcesz śledzić tylko źródłowe
+staticfiles/ # Katalog collectstatic
+
+# IDE (opcjonalnie, np. PyCharm)
+.idea/
+.vscode/
+
+# Operating System files
+.DS_Store
+Thumbs.db

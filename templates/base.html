@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rezerwacja Sauny{% endblock %}</title>
+    {% load static %} {# Ładuje tagi statyczne Django do obsługi plików CSS/JS #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {# Podłącza nasz główny plik CSS #}
+</head>
+<body>
+    <header>
+        <h1>Rezerwacja Sauny</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Strona Główna</a>
+        <a href="{% url 'sauna_list' %}">Sauny</a> {# Link do listy saun #}
+
+        {% if user.is_authenticated %} {# Pokazujemy linki tylko dla zalogowanych użytkowników #}
+            {# Formularz do wylogowania (wymaga metody POST dla bezpieczeństwa) #}
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %} {# Token CSRF jest obowiązkowy dla formularzy POST w Django #}
+                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer; font-size:1em; padding:0 15px;">Wyloguj ({{ user.username }})</button>
+            </form>
+            <a href="{% url 'my_reservations' %}">Moje Rezerwacje</a> {# Link do strony moich rezerwacji #}
+        {% else %} {# Pokazujemy linki dla niezalogowanych użytkowników #}
+            <a href="{% url 'login' %}">Zaloguj</a>
+            <a href="{% url 'signup' %}">Zarejestruj</a> {# Link do strony rejestracji #}
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {# Wyświetlanie komunikatów Django (np. o sukcesie rezerwacji, błędach) #}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %} {# Tutaj będzie wczytywana zawartość z innych szablonów #}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Rezerwacja Sauny. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+</body>
+</html>

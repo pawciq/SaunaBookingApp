@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+    <h2>Zaloguj się</h2>
+    <form method="post">
+        {% csrf_token %} {# Ważne dla bezpieczeństwa Django #}
+        {{ form.as_p }} {# Renderuje pola formularza jako paragrafy #}
+        <button type="submit">Zaloguj</button>
+    </form>
+    <p><a href="{% url 'password_reset' %}">Zapomniałeś hasła?</a></p> {# Placeholder, zrobimy później #}
+{% endblock %}

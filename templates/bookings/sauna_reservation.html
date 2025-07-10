@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Rezerwuj {{ sauna.name }}{% endblock %}
+
+{% block content %}
+    <h2>Rezerwuj Saunę: {{ sauna.name }}</h2>
+    <p>Pojemność: {{ sauna.capacity }} osób</p>
+    <p>Cena: {{ sauna.price_per_hour }} PLN/godzinę</p>
+    {% if sauna.description %}
+        <p>{{ sauna.description|linebreaksbr }}</p>
+    {% endif %}
+
+    <h3>Wybierz Termin</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} {# Renderuje pola formularza jako paragrafy #}
+        <button type="submit">Wstępna rezerwacja i przejdź do płatności</button>
+    </form>
+
+    {# TODO: Tutaj można dodać kalendarz lub listę wolnych terminów używając JavaScriptu #}
+    {# Na razie, użytkownik wpisuje datę i godzinę ręcznie #}
+{% endblock %}

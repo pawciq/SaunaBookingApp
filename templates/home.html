@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Strona Główna - Rezerwacja Sauny{% endblock %}
+
+{% block content %}
+    <h2>Witaj w Systemie Rezerwacji Sauny!</h2>
+    <p>Zarezerwuj swoją wizytę w komfortowych saunach.</p>
+
+    {% if user.is_authenticated %}
+        <p>Jesteś zalogowany jako: **{{ user.username }}**.</p>
+        <p>Przejdź do <a href="#">moich rezerwacji</a> lub <a href="{% url 'sauna_list' %}">zarezerwuj nową wizytę</a>.</p>
+    {% else %}
+        <p>Zaloguj się, aby rezerwować wizyty i zarządzać swoimi rezerwacjami.</p>
+        <p><a href="{% url 'login' %}">Kliknij tutaj, aby się zalogować.</a></p>
+        <p>Nie masz konta? <a href="{% url 'signup' %}">Zarejestruj się!</a></p>
+    {% endif %}
+{% endblock %}
