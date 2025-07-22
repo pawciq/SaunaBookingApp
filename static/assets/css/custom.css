@@ -294,103 +294,71 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
 /* =================================================================== */
-/* 8. RESPONSIVE DESIGN (MEDIA QUERIES) DLA TELEFONÓW                  */
+/* 8. RESPONSIVE DESIGN (MEDIA QUERIES) DLA TELEFONÓW - WERSJA FINALNA */
 /* =================================================================== */
 
 @media (max-width: 768px) {
-    /* Układ banera na telefonie: jeden element pod drugim */
-    body.landing #banner .content {
-        display: flex !important;
-        flex-direction: column !important;
+
+    /* --- BANER --- */
+
+    /* 1. Naprawiamy lustrzane odbicie */
+    #banner,
+    #banner .content {
+        transform: none !important;
+    }
+
+    /* 2. Zmieniamy układ na pionowy i centrujemy */
+    #banner {
         justify-content: center !important;
         text-align: center !important;
+        padding: 4em 5% !important;
         height: auto !important;
-        padding: 4em 0 !important;
-    }
-    #banner .content header, #banner .content .image {
-        position: static !important;
-        grid-column: auto !important;
-        grid-row: auto !important;
-        transform: scaleX(1) !important;
-        text-align: center !important;
-    }
-    #banner {
-        transform: scaleX(1) !important;
-    }
-    #banner .content .image {
-        margin: 2em auto 0 auto !important;
     }
 
-    /* Zmniejszamy czcionki w banerze */
+    #banner .content {
+        min-height: auto !important;
+    }
+
+    /* 3. Usuwamy pozycjonowanie absolutne, aby elementy ułożyły się jeden pod drugim */
+    #banner .content header,
+    #banner .content .image {
+        position: static !important;
+        width: 100% !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+    }
+
+    /* 4. Poprawiamy odstępy i rozmiary */
+    #banner .content .image {
+        margin-top: 2em !important;
+    }
     #banner .content h2 {
-        font-size: 2em !important;
+        font-size: 2.2rem !important;
     }
     #banner .content p {
-        font-size: 1em !important;
+        font-size: 1.1rem !important;
     }
 
-    /* Kafelki w jednej kolumnie */
-    .events-grid, .wrapper.style2 .row {
+
+    /* --- SEKCJE SPOTLIGHT --- */
+
+    /* Zmieniamy układ na blokowy (element pod elementem) */
+    .spotlight {
+        display: block !important;
+    }
+
+    .spotlight .image,
+    .spotlight .content {
+        width: 100% !important;
+    }
+
+
+    /* --- SIATKA WYDARZEŃ --- */
+
+    /* Zmieniamy układ na jedną kolumnę */
+    .events-grid {
         grid-template-columns: 1fr !important;
-        display: block !important;
-    }
-    .wrapper.style2 .row > *, .events-grid > * {
-        margin-bottom: 2em !important;
-    }
-
-
-    /* * =================================================
-     * OSTATECZNA POPRAWKA DLA SEKCJI SPOTLIGHT NA TELEFONACH
-     * =================================================
-     */
-
-    /* 1. Zmieniamy układ sekcji spotlight na prosty, blokowy */
-    .spotlight {
-        display: block !important;
-        height: auto !important; /* Pozwalamy wysokości dopasować się do treści */
-    }
-
-    /* 2. Ustawiamy oba kontenery (obraz i tekst) na 100% szerokości */
-    .spotlight .image,
-    .spotlight .content {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 3em 2em !important; /* Dodajemy wewnętrzny odstęp dla czytelności */
-        text-align: center !important; /* Centrujemy tekst wewnątrz */
-    }
-
-    /* 3. Upewniamy się, że obrazek jest widoczny i zachowuje proporcje */
-    .spotlight .image img {
-        width: 100%;
-        height: auto;
-    }
-}
-
-/* =================================================================== */
-/* 8. RESPONSIVE DESIGN (MEDIA QUERIES) DLA TELEFONÓW                  */
-/* =================================================================== */
-@media (max-width: 768px) {
-
-    /* Poprawka dla sekcji Spotlight na telefonach */
-    .spotlight {
-        display: block !important;
-        height: auto !important;
-    }
-
-    .spotlight .image,
-    .spotlight .content {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 2em !important;
-        text-align: center !important;
-    }
-
-    .spotlight .image img {
-        width: 100%;
-        height: auto;
     }
 }
