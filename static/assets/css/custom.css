@@ -261,73 +261,67 @@ p {
 
 
 /*
+ /*
  * ===================================================================
- * 7. POPRAWKI RESPONSIVE DLA TWOJEGO KODU
+ * 7. OSTATECZNE POPRAWKI RESPONSIVE
  * ===================================================================
  */
 @media (max-width: 768px) {
 
-    /* --- POPRAWKA BANERA NA TELEFONIE --- */
-
-    /* Resetujemy transformacje, aby tekst nie był odwrócony */
-    #banner, #banner .content {
-        transform: none !important;
-    }
-
-    /* Centrujemy zawartość i resetujemy sztywny układ */
+    /* --- BANER (WERSJA UPROSZCZONA I POPRAWIONA) --- */
     #banner {
-        justify-content: center !important;
-        text-align: center !important;
+        transform: none !important;
         height: auto !important;
-        padding: 4em 1em !important;
+        padding: 4em 1.5em !important;
+        text-align: center !important;
     }
-
     #banner .content {
+        transform: none !important;
         position: static !important;
-        min-height: auto !important;
-        max-width: 100% !important;
+        display: block !important;
+        min-height: 0 !important;
     }
-
-    /* Zmieniamy pozycjonowanie absolutne na statyczne, aby elementy ułożyły się jeden pod drugim */
     #banner .content header,
     #banner .content .image {
         position: static !important;
         width: 100% !important;
         max-width: 100% !important;
+        text-align: center !important;
         top: auto !important;
         left: auto !important;
         bottom: auto !important;
-        text-align: center !important;
     }
-
-    /* Dodajemy margines, aby logo nie stykało się z tekstem */
     #banner .content .image {
-        margin-top: 2em !important;
+        margin: 2em auto 0 auto !important;
     }
-
-    /* Zmniejszamy czcionki w banerze do czytelnych rozmiarów */
-    #banner .content h2,
-    #banner .content p {
+    #banner .content h2, #banner .content p {
         font-size: 1.8rem !important;
-        line-height: 1.4 !important;
     }
     #banner .content p {
         font-size: 1rem !important;
     }
 
-    /* --- POPRAWKA SEKCJI SPOTLIGHT NA TELEFONIE --- */
-
-    /* Zmieniamy układ flex na blokowy, aby obraz był nad tekstem */
+    /* --- SEKCJE SPOTLIGHT (WERSJA OSTATECZNA) --- */
     .spotlight {
-        display: block !important;
+        display: block !important; /* Zmusza do układu blokowego (element pod elementem) */
+        height: auto !important;
+        overflow: visible !important; /* Zapobiega "ucinaniu" treści */
     }
-
     .spotlight .image,
     .spotlight .content {
+        display: block !important;
+        position: static !important;
         width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        float: none !important; /* Resetuje opływanie */
+        opacity: 1 !important; /* Wymusza widoczność */
+        visibility: visible !important; /* Wymusza widoczność */
+        padding: 2em 1.5em !important;
+        margin: 0 !important;
     }
 
-    /* --- POPRAWKA SIATKI WYDARZEŃ NA TELEFONIE --- */
+    /* --- SIATKA WYDARZEŃ --- */
     .events-grid {
         grid-template-columns: 1fr !important;
     }
