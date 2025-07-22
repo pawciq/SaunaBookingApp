@@ -159,7 +159,7 @@ p {
 }
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Ustawia 3 równe kolumny */
     gap: 2.5em;
     margin-top: 3em;
 }
@@ -187,3 +187,9 @@ p {
 
 /* --- UWAGA: CELOWO USUNĄŁEM SEKCJĘ @media --- */
 /* Pozwalamy teraz, aby wbudowane w main.css style dla telefonów zadziałały. */
+
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr; /* Zmienia układ na jedną kolumnę */
+    }
+}
