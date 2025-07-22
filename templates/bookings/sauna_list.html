@@ -1,61 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Dostępne Sauny{% endblock %}
+{% block title %}Nasze Sauny{% endblock %}
 
 {% block content %}
-    <h2>Dostępne Sauny</h2>
+<div id="main" class="wrapper style1">
+    <div class="container">
+        <header class="major">
+            <h2>Nasze Sauny</h2>
+            <p>Wybierz saunę, która najbardziej Ci odpowiada i zarezerwuj termin.</p>
+        </header>
 
-    {% if saunas %}
-        <div class="sauna-list">
+        <div class="row gtr-150">
             {% for sauna in saunas %}
-                <div class="sauna-item">
+            <div class="col-12">
+                <section class="box">
                     <h3>{{ sauna.name }}</h3>
-                    <p>Pojemność: {{ sauna.capacity }} osób</p>
-                    <p>Cena: {{ sauna.price_per_hour }} PLN/godzinę</p>
+                    <p><strong>Pojemność:</strong> {{ sauna.capacity }} os.</p>
+                    <p><strong>Cena:</strong> {{ sauna.price_per_hour }} zł / godzina</p>
                     {% if sauna.description %}
-                        <p>{{ sauna.description|linebreaksbr }}</p>
+                        <p>{{ sauna.description }}</p>
                     {% endif %}
-                    {% if user.is_authenticated %} {# Tylko zalogowani użytkownicy mogą rezerwować #}
-                        <a href="{% url 'sauna_reserve' pk=sauna.pk %}" class="button">Zarezerwuj tę saunę</a>
-                    {% else %}
-                        <p>Zaloguj się, aby zarezerwować.</p>
-                    {% endif %}
-                </div>
-                <hr>
+                    <a href="{% url 'sauna_reserve' pk=sauna.pk %}" class="button">Zarezerwuj</a>
+                </section>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p>Obecnie nie ma żadnych aktywnych saun. Zapraszamy wkrótce!</p>
+            </div>
             {% endfor %}
         </div>
-    {% else %}
-        <p>Obecnie brak dostępnych saun do rezerwacji.</p>
-        <p>Prosimy sprawdzić ponownie później lub skontaktować się z obsługą.</p>
-    {% endif %}
-
-    <style>
-        /* Tymczasowe style dla listy saun */
-        .sauna-item {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .sauna-item h3 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-        .sauna-item p {
-            margin-bottom: 5px;
-        }
-        .sauna-item .button {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #28a745; /* Zielony kolor dla akcji */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .sauna-item .button:hover {
-            background-color: #218838;
-        }
-    </style>
+    </div>
+</div>
 {% endblock %}

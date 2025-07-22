@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Rejestracja{% endblock %}
 
 {% block content %}
-    <h2>Zarejestruj się</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Zarejestruj</button>
-    </form>
+<div id="main" class="wrapper style1">
+    <div class="container">
+        <header class="major">
+            <h2>Dołącz do nas</h2>
+            <p>Utwórz konto, aby w pełni korzystać z systemu rezerwacji.</p>
+        </header>
+
+        <div class="row gtr-150">
+            <div class="col-8 col-12-medium">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="primary">Zarejestruj się</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Logowanie{% endblock %}
 
 {% block content %}
-    <h2>Zaloguj się</h2>
-    <form method="post">
-        {% csrf_token %} {# Ważne dla bezpieczeństwa Django #}
-        {{ form.as_p }} {# Renderuje pola formularza jako paragrafy #}
-        <button type="submit">Zaloguj</button>
-    </form>
-    <p><a href="{% url 'password_reset' %}">Zapomniałeś hasła?</a></p> {# Placeholder, zrobimy później #}
+<div id="main" class="wrapper style1">
+    <div class="container">
+        <header class="major">
+            <h2>Logowanie</h2>
+            <p>Wprowadź swoje dane, aby uzyskać dostęp do rezerwacji.</p>
+        </header>
+
+        <div class="row gtr-150">
+            <div class="col-8 col-12-medium">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="primary">Zaloguj się</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

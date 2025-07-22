@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="main" class="wrapper style1">
+    <div class="container">
+        <div class="account-layout">
+
+            <aside class="sidebar">
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="{% url 'my_reservations' %}">Moje Rezerwacje</a></li>
+                        <li><a href="#">Ustawienia Konta</a></li>
+                        <li><a href="#">Historia Płatności</a></li>
+                        <li>
+                           <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Wyloguj</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                {% block account_content %}
+                {% endblock %}
+            </main>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,48 +1,57 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Rezerwacja Sauny{% endblock %}</title>
-    {% load static %} {# Ładuje tagi statyczne Django do obsługi plików CSS/JS #}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {# Podłącza nasz główny plik CSS #}
-</head>
-<body>
-    <header>
-        <h1>Rezerwacja Sauny</h1>
-    </header>
-    <nav>
-        <a href="{% url 'home' %}">Strona Główna</a>
-        <a href="{% url 'sauna_list' %}">Sauny</a> {# Link do listy saun #}
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{% block title %}Sauna Rezerwacje{% endblock %}</title> {# Tytuł z logiką Django #}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" /> {# Linki do CSS z Landed #}
+		<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}" /> <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload landing">
+		<div id="page-wrapper">
 
-        {% if user.is_authenticated %} {# Pokazujemy linki tylko dla zalogowanych użytkowników #}
-            {# Formularz do wylogowania (wymaga metody POST dla bezpieczeństwa) #}
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                {% csrf_token %} {# Token CSRF jest obowiązkowy dla formularzy POST w Django #}
-                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer; font-size:1em; padding:0 15px;">Wyloguj ({{ user.username }})</button>
-            </form>
-            <a href="{% url 'my_reservations' %}">Moje Rezerwacje</a> {# Link do strony moich rezerwacji #}
-        {% else %} {# Pokazujemy linki dla niezalogowanych użytkowników #}
-            <a href="{% url 'login' %}">Zaloguj</a>
-            <a href="{% url 'signup' %}">Zarejestruj</a> {# Link do strony rejestracji #}
-        {% endif %}
-    </nav>
+			<header id="header">
+				<nav id="nav">
+					<ul>
+						<li><a href="{% url 'home' %}#events">Wydarzenia</a></li>
 
-    <div class="container">
-        {# Wyświetlanie komunikatów Django (np. o sukcesie rezerwacji, błędach) #}
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+						{% if user.is_authenticated %}
+							<li><a href="{% url 'my_reservations' %}">Moje Rezerwacje</a></li>
+							<li>
+								<form action="{% url 'logout' %}" method="post" style="display:inline;">
+									{% csrf_token %}
+									<button type="submit" class="button primary">Wyloguj ({{ user.username }})</button>
+								</form>
+							</li>
+						{% else %}
+							<li><a href="{% url 'login' %}">Zaloguj</a></li>
+							<li><a href="{% url 'signup' %}" class="button primary">Zarejestruj się</a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</header>
 
-        {% block content %}{% endblock %} {# Tutaj będzie wczytywana zawartość z innych szablonów #}
-    </div>
+			{% block content %}{% endblock %}
 
-    <footer>
-        <p>&copy; 2025 Rezerwacja Sauny. Wszelkie prawa zastrzeżone.</p>
-    </footer>
-</body>
+			<footer id="footer">
+                <ul class="icons">
+					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+					</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: Paweł Sasin </li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+        <script src="{% static 'assets/js/browser.min.js' %}"></script>
+        <script src="{% static 'assets/js/breakpoints.min.js' %}"></script> <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script> ```
+
+	</body>
 </html>
