@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* Plik: static/assets/css/custom.css - Wersja finalna, uporządkowana  */
+/* Plik: static/assets/css/custom.css - Twoja wersja + poprawki RWD    */
 /* =================================================================== */
 
 /* -- 1. OGÓLNE STYLE STRONY -- */
@@ -174,14 +174,9 @@ p {
 }
 
 
-/* * ===================================================================
- * 5. NOWE, SPÓJNE STYLE DLA SEKCJI WYDARZEŃ
- * ===================================================================
- */
-
-/* 1. Główny kontener sekcji - tło takie samo jak w "Dlaczego warto?" */
+/* -- 5. STYLE DLA SEKCJI WYDARZEŃ -- */
 .events-section {
-    background-color: #E6E1D0; /* ZMIANA */
+    background-color: #E6E1D0;
     padding: 4em 0;
     text-align: center;
 }
@@ -191,27 +186,12 @@ p {
 .events-section .major p {
     color: #36454F !important;
 }
-
-/* =================================================================== */
-/* POPRAWKA UKŁADU SIATKI WYDARZEŃ (3 KOLUMNY)                         */
-/* =================================================================== */
-
 .events-grid {
     display: grid;
-    /* Ustawia siatkę na 3 równe kolumny */
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5em;
     margin-top: 3em;
 }
-
-/* Na mniejszych ekranach (np. telefony), kafelki ułożą się w jednej kolumnie */
-@media (max-width: 768px) {
-    .events-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* 3. Kafelka wydarzenia - teraz wygląda jak .box */
 .event-card {
     height: 100%;
     background-color: #FFFFFF;
@@ -228,23 +208,19 @@ p {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
-
-/* 4. Okrągły kontener na zdjęcie - zmniejszony i bez grubej ramki */
 .event-card .event-image-container {
-    width: 300px; /* ZMIANA */
-    height: 300px; /* ZMIANA */
+    width: 300px;
+    height: 300px;
     border-radius: 8%;
     overflow: hidden;
     margin-bottom: 1.5em;
-    border: 3px solid #DDE2E6; /* ZMIANA na subtelną ramkę */
+    border: 3px solid #DDE2E6;
 }
 .event-card .event-image-container img {
     width: 100%;
     height: 100%;
     object-fit: fill;
 }
-
-/* 5. Teksty w kafelce */
 .event-card h3 {
     color: #2d572c !important;
 }
@@ -252,8 +228,6 @@ p {
     color: #36454F !important;
     flex-grow: 1;
 }
-
-/* 6. Przycisk rezerwacji */
 .event-card .button.primary {
     margin-top: 1.5em;
     background-color: #2d572c !important;
@@ -262,112 +236,98 @@ p {
     background-color: #3a7538 !important;
 }
 
-/* =============================================================== */
-/* TŁO DLA STRONY "MOJE REZERWACJE" - WERSJA UPROSZCZONA           */
-/* =============================================================== */
-
+/* -- 6. TŁO DLA STRONY "MOJE REZERWACJE" -- */
 .main-content {
     position: relative;
     padding: 2em;
     color: #FFFFFF !important;
     border-radius: 8px;
-    overflow: hidden; /* Ważne dla poprawnego działania tła i nakładki */
+    overflow: hidden;
     z-index: 1;
-
-    /* ŁĄCZYMY OBRAZ TŁA I NAKŁADKĘ W JEDNĄ WŁAŚCIWOŚĆ */
     background: linear-gradient(rgba(30, 35, 40, 0.75), rgba(30, 35, 40, 0.75)), url('/static/images/tło_rezerwacje.jpg');
     background-size: cover;
     background-position: center;
 }
-
-/* Upewniamy się, że nagłówki i tekst wewnątrz są białe */
 .main-content h2,
 .main-content h3,
 .main-content h4,
 .main-content p {
     color: #FFFFFF !important;
 }
-
-/* Poprawiamy wygląd boksów z rezerwacjami na nowym tle */
 .main-content .box {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* =================================================================== */
-/* 8. RESPONSIVE DESIGN (MEDIA QUERIES) DLA TELEFONÓW - WERSJA FINALNA */
-/* =================================================================== */
 
+/*
+ * ===================================================================
+ * 7. POPRAWKI RESPONSIVE DLA TWOJEGO KODU
+ * ===================================================================
+ */
 @media (max-width: 768px) {
 
-    /* --- BANER --- */
+    /* --- POPRAWKA BANERA NA TELEFONIE --- */
 
-    /* 1. Resetujemy lustrzane odbicie */
-    #banner,
-    #banner .content {
+    /* Resetujemy transformacje, aby tekst nie był odwrócony */
+    #banner, #banner .content {
         transform: none !important;
     }
 
-    /* 2. Zmieniamy układ na pionowy, centrujemy i zapewniamy odpowiednią wysokość */
+    /* Centrujemy zawartość i resetujemy sztywny układ */
     #banner {
-        display: flex !important;
-        flex-direction: column !important; /* Układ pionowy */
         justify-content: center !important;
         text-align: center !important;
-        padding: 4em 5% !important;
-        min-height: 80vh; /* Zapewnia odpowiednią wysokość banera */
+        height: auto !important;
+        padding: 4em 1em !important;
     }
 
     #banner .content {
-        display: flex !important;
-        flex-direction: column !important;
-        position: static !important; /* Usuwamy pozycjonowanie absolutne z dzieci */
+        position: static !important;
+        min-height: auto !important;
+        max-width: 100% !important;
     }
 
-    /* 3. WYMUSZAMY POPRAWNĄ KOLEJNOŚĆ: Tekst na górze, logo na dole */
-    #banner .content header {
-        order: 1 !important; /* Pierwszy element */
-        position: static !important;
-        width: 100% !important;
-    }
+    /* Zmieniamy pozycjonowanie absolutne na statyczne, aby elementy ułożyły się jeden pod drugim */
+    #banner .content header,
     #banner .content .image {
-        order: 2 !important; /* Drugi element */
         position: static !important;
         width: 100% !important;
+        max-width: 100% !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        text-align: center !important;
+    }
+
+    /* Dodajemy margines, aby logo nie stykało się z tekstem */
+    #banner .content .image {
         margin-top: 2em !important;
     }
 
-    /* 4. Poprawiamy rozmiary czcionek */
-    #banner .content h2 {
-        font-size: 2.2rem !important;
+    /* Zmniejszamy czcionki w banerze do czytelnych rozmiarów */
+    #banner .content h2,
+    #banner .content p {
+        font-size: 1.8rem !important;
+        line-height: 1.4 !important;
     }
     #banner .content p {
-        font-size: 1.1rem !important;
+        font-size: 1rem !important;
     }
 
+    /* --- POPRAWKA SEKCJI SPOTLIGHT NA TELEFONIE --- */
 
-    /* --- SEKCJE SPOTLIGHT (OSTATECZNA NAPRAWA) --- */
-
-    /* 1. Resetujemy skomplikowany układ flex do prostego, blokowego */
+    /* Zmieniamy układ flex na blokowy, aby obraz był nad tekstem */
     .spotlight {
         display: block !important;
-        height: auto !important; /* Wysokość dopasowana do treści */
-        overflow: visible !important; /* Zapobiega ukrywaniu treści */
     }
 
-    /* 2. Wymuszamy widoczność kontenerów z obrazem i tekstem */
     .spotlight .image,
     .spotlight .content {
-        display: block !important;
         width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        position: static !important;
-        padding: 2em !important;
     }
 
-
-    /* --- SIATKA WYDARZEŃ --- */
+    /* --- POPRAWKA SIATKI WYDARZEŃ NA TELEFONIE --- */
     .events-grid {
         grid-template-columns: 1fr !important;
     }
