@@ -302,38 +302,42 @@ p {
 
     /* --- BANER --- */
 
-    /* 1. Naprawiamy lustrzane odbicie */
+    /* 1. Resetujemy lustrzane odbicie */
     #banner,
     #banner .content {
         transform: none !important;
     }
 
-    /* 2. Zmieniamy układ na pionowy i centrujemy */
+    /* 2. Zmieniamy układ na pionowy, centrujemy i zapewniamy odpowiednią wysokość */
     #banner {
+        display: flex !important;
+        flex-direction: column !important; /* Układ pionowy */
         justify-content: center !important;
         text-align: center !important;
         padding: 4em 5% !important;
-        height: auto !important;
+        min-height: 80vh; /* Zapewnia odpowiednią wysokość banera */
     }
 
     #banner .content {
-        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        position: static !important; /* Usuwamy pozycjonowanie absolutne z dzieci */
     }
 
-    /* 3. Usuwamy pozycjonowanie absolutne, aby elementy ułożyły się jeden pod drugim */
-    #banner .content header,
-    #banner .content .image {
+    /* 3. WYMUSZAMY POPRAWNĄ KOLEJNOŚĆ: Tekst na górze, logo na dole */
+    #banner .content header {
+        order: 1 !important; /* Pierwszy element */
         position: static !important;
         width: 100% !important;
-        top: auto !important;
-        left: auto !important;
-        bottom: auto !important;
     }
-
-    /* 4. Poprawiamy odstępy i rozmiary */
     #banner .content .image {
+        order: 2 !important; /* Drugi element */
+        position: static !important;
+        width: 100% !important;
         margin-top: 2em !important;
     }
+
+    /* 4. Poprawiamy rozmiary czcionek */
     #banner .content h2 {
         font-size: 2.2rem !important;
     }
@@ -342,22 +346,28 @@ p {
     }
 
 
-    /* --- SEKCJE SPOTLIGHT --- */
+    /* --- SEKCJE SPOTLIGHT (OSTATECZNA NAPRAWA) --- */
 
-    /* Zmieniamy układ na blokowy (element pod elementem) */
+    /* 1. Resetujemy skomplikowany układ flex do prostego, blokowego */
     .spotlight {
         display: block !important;
+        height: auto !important; /* Wysokość dopasowana do treści */
+        overflow: visible !important; /* Zapobiega ukrywaniu treści */
     }
 
+    /* 2. Wymuszamy widoczność kontenerów z obrazem i tekstem */
     .spotlight .image,
     .spotlight .content {
+        display: block !important;
         width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        position: static !important;
+        padding: 2em !important;
     }
 
 
     /* --- SIATKA WYDARZEŃ --- */
-
-    /* Zmieniamy układ na jedną kolumnę */
     .events-grid {
         grid-template-columns: 1fr !important;
     }
