@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* Plik: static/assets/css/custom.css - Twoja wersja + poprawki RWD    */
+/* Plik: static/assets/css/custom.css - Wersja uproszczona i stabilna   */
 /* =================================================================== */
 
 /* -- 1. OGÓLNE STYLE STRONY -- */
@@ -14,18 +14,36 @@ h1, h2, h3, h4, h5, h6 {
     color: #2E4034;
 }
 p {
-    color: #3A5242 !important;
+    color: #3A5242;
 }
 .button.primary {
-    background-color: #2E4034 !important;
+    background-color: #2E4034;
     color: #FFFFFF !important;
 }
 .button.primary:hover {
-    background-color: #3A5242 !important;
+    background-color: #3A5242;
 }
 
 
-/* -- 2. UKŁAD I STYL BANERA -- */
+/* -- 2. NAWIGACJA GÓRNA -- */
+/* Celowo zostawione puste, aby nie wymuszać przyklejania */
+#header #nav ul li a {
+    color: #FFFFFF;
+}
+#header #nav ul li a.button.primary {
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF !important;
+}
+#header #nav ul li a.button.primary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =================================================================== */
+/* BANNER - STYL ZGODNY Z WERSJĄ LOKALNĄ                               */
+/* =================================================================== */
+
 #banner {
     display: flex !important;
     justify-content: flex-start !important;
@@ -95,70 +113,29 @@ p {
     opacity: 0.70 !important;
     border-radius: 0 !important;
 }
-#header #nav ul li a {
-    color: #FFFFFF !important;
-}
-#header #nav ul li a.button.primary {
-    background-color: transparent !important;
-    border: 2px solid #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-#header #nav ul li a.button.primary:hover {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-}
 
 
-/* -- 3. STYLE SEKCJI Z ZAWARTOŚCIĄ -- */
+/* -- 4. STYLE SEKCJI Z TREŚCIĄ -- */
 .wrapper.style2 {
     background-color: #E6E1D0;
 }
 .spotlight.style3 {
     background-color: #2E4034;
     color: #E6E1D0;
-    height: 100vh !important;
 }
 .spotlight.style3 h2, .spotlight.style3 h3, .spotlight.style3 p {
     color: #FFFFFF;
 }
-#three .inline-graphic,
-#four .inline-graphic {
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    margin: 2em auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-#four .image img {
-    object-fit: contain !important;
-}
-
-
-/* -- 4. SEKCJA "DLACZEGO WARTO?" (KAFLKI Z IKONAMI) -- */
-.wrapper.style2 .row {
-    display: flex;
-    flex-wrap: wrap;
-}
-.wrapper.style2 .row > * {
-    display: flex;
-    flex-direction: column;
-}
-.wrapper.style2 .box {
-    height: 100%;
+.wrapper.style2 .box, .event-card {
     background-color: #FFFFFF;
     border: 1px solid #DDE2E6;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 2em;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.wrapper.style2 .box:hover {
+.wrapper.style2 .box:hover, .event-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-.wrapper.style2 .box h3 {
-    margin-top: 1em;
 }
 .wrapper.style2 .box .icon {
     display: flex;
@@ -174,17 +151,11 @@ p {
 }
 
 
-/* -- 5. STYLE DLA SEKCJI WYDARZEŃ -- */
+/* -- 5. SEKCJA WYDARZEŃ -- */
 .events-section {
     background-color: #E6E1D0;
     padding: 4em 0;
     text-align: center;
-}
-.events-section .major h2 {
-    color: #2d572c !important;
-}
-.events-section .major p {
-    color: #36454F !important;
 }
 .events-grid {
     display: grid;
@@ -193,20 +164,9 @@ p {
     margin-top: 3em;
 }
 .event-card {
-    height: 100%;
-    background-color: #FFFFFF;
-    border: 1px solid #DDE2E6;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 2em;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 .event-card .event-image-container {
     width: 300px;
@@ -219,95 +179,11 @@ p {
 .event-card .event-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
-}
-.event-card h3 {
-    color: #2d572c !important;
+    object-fit: cover;
 }
 .event-card p {
-    color: #36454F !important;
     flex-grow: 1;
 }
-.event-card .button.primary {
-    margin-top: 1.5em;
-    background-color: #2d572c !important;
-}
-.event-card .button.primary:hover {
-    background-color: #3a7538 !important;
-}
 
-/* -- 6. TŁO DLA STRONY "MOJE REZERWACJE" -- */
-.main-content {
-    position: relative;
-    padding: 2em;
-    color: #FFFFFF !important;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1;
-    background: linear-gradient(rgba(30, 35, 40, 0.75), rgba(30, 35, 40, 0.75)), url('/static/images/tło_rezerwacje.jpg');
-    background-size: cover;
-    background-position: center;
-}
-.main-content h2,
-.main-content h3,
-.main-content h4,
-.main-content p {
-    color: #FFFFFF !important;
-}
-.main-content .box {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-
-/*
- * ===================================================================
- * 7. POPRAWKI RESPONSIVE DLA TWOJEGO KODU
- * ===================================================================
- */
-@media (max-width: 980px) {
-
-    /* --- BANER --- */
-    #banner, #banner .content {
-        transform: none !important; /* Naprawia lustrzane odbicie */
-    }
-    #banner {
-        height: auto !important;
-        padding: 4em 1.5em !important;
-        text-align: center !important;
-        justify-content: center !important;
-    }
-    #banner .content {
-        position: static !important;
-        min-height: 0 !important;
-    }
-    #banner .content header, #banner .content .image {
-        position: static !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        text-align: center !important;
-    }
-    #banner .content .image {
-        margin-top: 2em !important;
-    }
-    #banner .content h2, #banner .content p {
-        font-size: 1.8rem !important;
-    }
-    #banner .content p {
-        font-size: 1rem !important;
-    }
-
-    /* --- SEKCJE SPOTLIGHT --- */
-    .spotlight {
-        display: block !important;
-        height: auto !important;
-    }
-    .spotlight .image, .spotlight .content {
-        width: 100% !important;
-    }
-
-    /* --- SIATKA WYDARZEŃ --- */
-    .events-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
+/* --- UWAGA: CELOWO USUNĄŁEM SEKCJĘ @media --- */
+/* Pozwalamy teraz, aby wbudowane w main.css style dla telefonów zadziałały. */
