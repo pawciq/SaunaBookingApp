@@ -293,3 +293,99 @@ p {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+
+/* =================================================================== */
+/* 8. RESPONSIVE DESIGN (MEDIA QUERIES) DLA TELEFONÓW                  */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+    /*
+     * Style wewnątrz tego bloku zadziałają TYLKO na ekranach
+     * o szerokości 768px lub mniejszej (np. większość telefonów w pionie).
+     */
+
+    /* --- OGÓLNE POPRAWKI --- */
+
+    /* Zmniejszamy główne marginesy na stronach z sidebarem */
+    .account-page-wrapper .container {
+        padding: 2em 1em !important;
+    }
+
+
+    /* --- BANER --- */
+
+    /* Upraszczamy układ banera na prosty, pionowy */
+    body.landing #banner .content,
+    #banner .content {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        text-align: center !important;
+        height: auto !important;
+        padding: 4em 1em !important;
+        /* Resetujemy siatkę i transformacje z wersji desktopowej */
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        transform: scaleX(1) !important;
+    }
+
+    #banner {
+        transform: scaleX(1) !important; /* Naprawiamy lustrzane odbicie całego banera */
+    }
+
+    /* Przywracamy elementy banera do normalnego układu */
+    #banner .content header,
+    #banner .content .image {
+        position: static !important;
+        grid-column: auto !important;
+        grid-row: auto !important;
+        transform: none !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+    #banner .content .image {
+        margin-top: 2em !important;
+    }
+
+    /* Zmniejszamy czcionki w banerze */
+    #banner .content h2 {
+        font-size: 2.2em !important;
+    }
+    #banner .content p {
+        font-size: 1.1em !important;
+    }
+
+
+    /* --- SEKCJE Z KAFLKAMI (Dlaczego Warto? i Wydarzenia) --- */
+
+    /* Zmieniamy układ siatki na jedną kolumnę */
+    .events-grid,
+    .wrapper.style2 .row {
+        grid-template-columns: 1fr !important;
+        display: block !important; /* Używamy block, aby elementy układały się jeden pod drugim */
+    }
+    .wrapper.style2 .row > *,
+    .events-grid > * {
+        margin-bottom: 2em !important; /* Dodajemy odstęp między kafelkami w pionie */
+    }
+
+
+    /* --- SEKCJE SPOTLIGHT (Obraz + Tekst) --- */
+
+    /* Sprawiamy, że obrazek jest zawsze nad tekstem */
+    .spotlight {
+        flex-direction: column !important;
+    }
+    .spotlight.right .content {
+        order: -1; /* Zmienia kolejność, żeby tekst był zawsze drugi */
+    }
+
+    .spotlight .image,
+    .spotlight .content {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
