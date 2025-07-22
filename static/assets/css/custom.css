@@ -600,3 +600,52 @@ p {
         padding: 0 !important;
     }
 }
+
+/* =================================================================== */
+/* OSTATECZNA POPRAWKA DLA SEKCJI SPOTLIGHT NA TELEFONACH              */
+/* =================================================================== */
+
+@media screen and (max-width: 980px) {
+
+    /* 1. Resetujemy główny kontener sekcji spotlight */
+    .spotlight {
+        display: block !important; /* Zmieniamy układ na blokowy (element pod elementem) */
+        height: auto !important;
+        background: none !important; /* Usuwamy tło z kontenera nadrzędnego */
+    }
+
+    /* 2. Stylujemy kontener z obrazem */
+    .spotlight .image {
+        display: block !important;
+        width: 100% !important;
+        height: 50vh !important; /* Wysokość obrazu: 50% wysokości ekranu */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 3. Zapewniamy, że obrazek wypełnia swój kontener w 100% */
+    .spotlight .image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Rozciąga obraz bez zniekształceń */
+    }
+
+    /* 4. Stylujemy kontener z treścią */
+    .spotlight .content {
+        width: 100% !important;
+        /* Resetujemy tło narzucone przez oryginalny szablon */
+        background-color: transparent !important;
+    }
+
+    /* 5. Upewniamy się, że tło całej sekcji ma poprawny kolor z naszej palety */
+    .spotlight.style1 {
+        background: #FFFFFF !important;
+    }
+    .spotlight.style2 {
+        background: #E6E1D0 !important;
+    }
+    .spotlight.style3 {
+        background: #2E4034 !important;
+    }
+
+}
