@@ -4,17 +4,22 @@
 
 /* -- 1. OGÓLNE STYLE STRONY -- */
 body {
-    background: #F0EAD6;
+    background: #272833 ;
     color: #36322F;
 }
 a {
     color: #D48C2E;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
+    color: #E6E1D0 !important;
+}
+
+h3 {
     color: #2E4034;
 }
 p {
     color: #3A5242;
+    font-size: 1em;
 }
 .button.primary {
     background-color: #2E4034;
@@ -39,95 +44,19 @@ p {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
-
-/* =================================================================== */
-/* BANNER - STYL ZGODNY Z WERSJĄ LOKALNĄ                               */
-/* =================================================================== */
-
-#banner {
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    padding: 0 12% !important;
-    position: relative;
-    z-index: 1;
-    transform: scaleX(-1);
-}
-#banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(30, 35, 40, 0.75) !important;
-    z-index: -1;
-}
-#banner::after {
-    display: none !important;
-}
-#banner .content {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 !important;
-    transform: scaleX(-1);
-    position: relative;
-    min-height: 400px;
-}
-#banner .content header {
-    position: absolute;
-    top: 260px;
-    left: 60px;
-    width: 100%;
-}
-#banner .content .image {
-    position: absolute;
-    bottom: 250px;
-    left: 260px;
-    width: 800px;
-}
-#banner .content h2,
-#banner .content p {
-    color: #E6E1D0 !important;
-    text-align: center !important;
-    line-height: 1.6 !important;
-    font-size: 3rem !important;
-}
-#banner .content .image {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-#banner .content .image::before,
-#banner .content .image::after {
-    display: none !important;
-}
-#banner .content .image .logo-img {
-    max-width: 400px !important;
-    width: 100% !important;
-    height: auto !important;
-    border: none !important;
-    opacity: 0.70 !important;
-    border-radius: 0 !important;
-}
-
-
 /* -- 4. STYLE SEKCJI Z TREŚCIĄ -- */
 .wrapper.style2 {
-    background-color: #E6E1D0;
+    background-color: #272833;
 }
 .spotlight.style3 {
-    background-color: #2E4034;
+    background-color: #272833;
     color: #E6E1D0;
 }
 .spotlight.style3 h2, .spotlight.style3 h3, .spotlight.style3 p {
     color: #FFFFFF;
 }
 .wrapper.style2 .box, .event-card {
-    background-color: #FFFFFF;
+    background-color: #E6E1D0;
     border: 1px solid #DDE2E6;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -153,7 +82,7 @@ p {
 
 /* -- 5. SEKCJA WYDARZEŃ -- */
 .events-section {
-    background-color: #E6E1D0;
+    background-color: #272833;
     padding: 4em 0;
     text-align: center;
 }
