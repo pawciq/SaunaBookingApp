@@ -108,7 +108,7 @@ p {
 .event-card .event-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 .event-card p {
     flex-grow: 1;
